@@ -76,13 +76,10 @@ var response ={
             }
         },
         {
-          "basicCard": {
-            "title": "보물상자",
-            "description": "보물상자 안에는 뭐가 있을까",
-            "thumbnail": {
-              "imageUrl": "http://k.kakaocdn.net/dn/83BvP/bl20duRC1Q1/lj3JUcmrzC53YIjNDkqbWK/i_6piz1p.jpg"
+            "simpleImage": {
+                "imageUrl": "http://k.kakaocdn.net/dn/83BvP/bl20duRC1Q1/lj3JUcmrzC53YIjNDkqbWK/i_6piz1p.jpg",
+                "altText": "보물상자입니다"
             }
-          }
         }
       ]
     }
@@ -98,10 +95,9 @@ router.post('/', function(req, res, next) {
         result = defaultReponse;
     }else{
         result = {...response}
-
-        result.template.outputs[1].basicCard.title="우리들의 찬양";
-        result.template.outputs[1].basicCard.description=data[number];
-        result.template.outputs[1].basicCard.thumbnail.imageUrl=`${req.protocol}://${req.host}/images/sheet/${number}.jpg`;
+        result.template.outputs[0].simpleText.text = `우리들의 찬양 \n${data[number]}`
+        result.template.outputs[1].simpleImage.imageUrl=`${req.protocol}://${req.host}/images/sheet/${number}.jpg`;
+        result.template.outputs[1].simpleImage.altText=`우리들의 찬양 \n${data[number]}`;
     }
     res.json(result)
 });
