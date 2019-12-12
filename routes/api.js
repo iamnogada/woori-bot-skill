@@ -44,6 +44,11 @@ router.get('/', function(req, res, next) {
   res.json({name:'hi'});
 });
 
+router.post('/', function(req, res, next) {
+	console.log('post');
+  console.log(JSON.stringify(req.body));
+  res.json(resonseTemplate);
+});
 
 
 module.exports = router;
