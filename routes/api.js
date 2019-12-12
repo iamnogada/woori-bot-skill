@@ -40,6 +40,19 @@ router.get('/', function(req, res, next) {
 });
 
 
+var data = {
+    "211" : "예수는 내 힘이요(내삶의 이유라)",
+    "212" : "갈보리 십자가의",
+    "213" : "거룩하신 하나님",
+    "214" : "그곳에서 기도드리네",
+    "215" : "그대를 만난 건 주님의 축복",
+    "216" : "그때 그 무리들이",
+    "217" : "나는 하나님을 예배하는", 
+    "218" : "나의 모습 나의 소유",
+    "219" : "나 주님의 기쁨 되기 원하네",
+    "220" : "나 주의 믿음 갖고"
+}
+
 var defaultReponse ={
     "version": "2.0",
     "template": {
@@ -70,9 +83,18 @@ var response ={
 var imageURL =""
 
 router.post('/', function(req, res, next) {
-	console.log('post');
-  console.log(JSON.stringify(req.body));
-  res.json(resonseTemplate);
+    let params = JSON.parse(req.body.action.detailParams.sys_number.value);
+    let number = params.amount;
+    var result;
+    if(number <211 || number>220){
+        result = defaultReponse;
+    }else{
+        result = {...response}
+
+        result.template.outputs[0].simpleImage.imageUrl=`${req.protocol}://${req.host}/images/sheet/${number}.jpg`;
+        result.template.outputs[0].simpleImage.altText=data[number];
+    }
+    res.json(result)
 });
 
 
