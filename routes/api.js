@@ -12,15 +12,6 @@ var resonseTemplate ={
             "thumbnail": {
               "imageUrl": "http://k.kakaocdn.net/dn/83BvP/bl20duRC1Q1/lj3JUcmrzC53YIjNDkqbWK/i_6piz1p.jpg"
             },
-            "profile": {
-              "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4BJ9LU4Ikr_EvZLmijfcjzQKMRCJ2bO3A8SVKNuQ78zu2KOqM",
-              "nickname": "보물상자"
-            },
-            "social": {
-              "like": 1238,
-              "comment": 8,
-              "share": 780
-            },
             "buttons": [
               {
                 "action": "message",
@@ -38,11 +29,45 @@ var resonseTemplate ={
       ]
     }
   }
-
+/*
+{"intent":{"id":"3valv9dkvvv65hdfpdlilhvu","name":"블록 이름"},"userRequest":{"timezone":"Asia/Seoul","params":{"ignoreMe":"true"},"block":{"id":"3valv9dkvvv65hdfpdlilhvu","
+name":"블록 이름"},"utterance":"발화 내용","lang":null,"user":{"id":"549282","type":"accountId","properties":{}}},"bot":{"id":"5dee0b2292690d0001fbf098","name":"봇 이름"},"a
+ction":{"name":"mi5aseg3tg","clientExtra":null,"params":{},"id":"ioo17q8oq53c4n37d5r7dju7","detailParams":{}}}
+*/
 /* api service '/api/ */
 router.get('/', function(req, res, next) {
   res.json({name:'hi'});
 });
+
+
+var defaultReponse ={
+    "version": "2.0",
+    "template": {
+        "outputs": [
+            {
+                "simpleText": {
+                    "text": "시험 버전입니다. 200~220 만 검색 됩니다."
+                }
+            }
+        ]
+    }
+}
+
+var response ={
+    "version": "2.0",
+    "template": {
+        "outputs": [
+            {
+                "simpleImage": {
+                    "imageUrl": "http://k.kakaocdn.net/dn/83BvP/bl20duRC1Q1/lj3JUcmrzC53YIjNDkqbWK/i_6piz1p.jpg",
+                    "altText": "보물상자입니다"
+                }
+            }
+        ]
+    }
+}
+
+var imageURL =""
 
 router.post('/', function(req, res, next) {
 	console.log('post');
