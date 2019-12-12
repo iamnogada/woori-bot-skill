@@ -71,6 +71,11 @@ var response ={
     "template": {
       "outputs": [
         {
+            "simpleText": {
+                "text": "간단한 텍스트 요소입니다."
+            }
+        },
+        {
           "basicCard": {
             "title": "보물상자",
             "description": "보물상자 안에는 뭐가 있을까",
@@ -94,9 +99,9 @@ router.post('/', function(req, res, next) {
     }else{
         result = {...response}
 
-        result.template.outputs[0].basicCard.title="우리들의 찬양";
-        result.template.outputs[0].basicCard.description=data[number];
-        result.template.outputs[0].basicCard.thumbnail.imageUrl=`${req.protocol}://${req.host}/images/sheet/${number}.jpg`;
+        result.template.outputs[1].basicCard.title="우리들의 찬양";
+        result.template.outputs[1].basicCard.description=data[number];
+        result.template.outputs[1].basicCard.thumbnail.imageUrl=`${req.protocol}://${req.host}/images/sheet/${number}.jpg`;
     }
     res.json(result)
 });
